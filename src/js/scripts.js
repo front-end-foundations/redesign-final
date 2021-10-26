@@ -4,6 +4,7 @@ const API = `https://api.nytimes.com/svc/topstories/v2/nyregion.json?api-key=${k
 const storagePrefix = "nyt-autosave";
 
 import { setWithExpiry, getWithExpiry } from "./modules/localStorageHelpers.js";
+import { runCarousel } from "./modules/carousel.js";
 
 function getStories() {
   const value = getWithExpiry(storagePrefix);
@@ -50,6 +51,16 @@ if (document.querySelector(".home")) {
 
 document.addEventListener("click", clickHandlers);
 
+// function clickHandlers(event) {
+//   if (event.target.matches("#pull")) {
+//     showMenu(event);
+//     event.preventDefault();
+//   }
+//   if (event.target.matches(".content-video a")) {
+//     videoSwitch(event);
+//     event.preventDefault();
+//   }
+// }
 function clickHandlers(event) {
   if (event.target.matches("#pull")) {
     showMenu(event);
@@ -59,7 +70,18 @@ function clickHandlers(event) {
     videoSwitch(event);
     event.preventDefault();
   }
+  if (event.target.matches(".image-tn img")) {
+    runCarousel(event);
+    event.preventDefault();
+  }
 }
+
+// function runCarousel(event) {
+//   const imageHref = event.target.parentNode.getAttribute("href");
+//   const titleText = event.target.title;
+//   document.querySelector("figure img").src = imageHref;
+//   document.querySelector("figcaption").innerHTML = titleText;
+// }
 
 function showMenu() {
   document.querySelector("body").classList.toggle("show-nav");

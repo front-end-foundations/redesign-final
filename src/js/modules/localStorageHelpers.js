@@ -16,7 +16,7 @@ export function getWithExpiry(key) {
     console.log("no item string");
     return null;
   }
-  console.log("item string found!", itemStr);
+  console.log("item string found!");
   const item = JSON.parse(itemStr);
   const now = new Date();
   // compare the expiry time of the item with the current time
